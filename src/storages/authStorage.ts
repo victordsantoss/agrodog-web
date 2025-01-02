@@ -1,8 +1,13 @@
 export const AuthStorage = {
   setToken: (token: string) => {
-    localStorage.setItem('authToken', token);
+    if (typeof window !== 'undefined') {
+      localStorage.setItem('authToken', token);
+    }
   },
   getToken: (): string | null => {
-    return localStorage.getItem('authToken');
+    if (typeof window !== 'undefined') {
+      return localStorage.getItem('authToken');
+    }
+    return null;
   },
 };

@@ -35,7 +35,7 @@ const LoginTemplate = () => {
       AuthStorage.setToken(token);
       await persistUser(token)
       showAlert('Usuário autenticado com sucesso!', 'success');
-
+      push('home')
     },
   });
 

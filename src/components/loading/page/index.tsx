@@ -10,6 +10,7 @@ export default function PageLoadingComponent() {
       sx={containerStyle}
     >
       <Image
+        priority
         width={300}
         height={250}
         src={'/assets/gifs/pet-unscreen.gif'}

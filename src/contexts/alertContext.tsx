@@ -43,7 +43,7 @@ export const AlertProvider: React.FC<{ children: React.ReactNode }> = ({
     <AlertContext.Provider value={{ showAlert }
     }>
       {children}
-      < Snackbar
+      <Snackbar
         open={open}
         autoHideDuration={autoHideDuration}
         onClose={handleClose}
