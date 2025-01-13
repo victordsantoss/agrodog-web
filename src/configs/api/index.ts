@@ -18,6 +18,7 @@ api.interceptors.request.use(
     return config;
   },
   (error) => {
+    // Aqui verificar o tipo de erro, se for 401 limpar dados de local storage e mandá-lo para a tela de login
     return Promise.reject(error);
   }
 );
