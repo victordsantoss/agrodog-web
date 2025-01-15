@@ -2,12 +2,12 @@
 
 import { Box } from "@mui/material";
 import Image from "next/image";
-import { containerStyle } from "./styles";
+import { containerStyles } from "./styles";
 
 export default function PageLoadingComponent() {
   return (
     <Box
-      sx={containerStyle}
+      sx={containerStyles.container}
     >
       <Image
         priority
