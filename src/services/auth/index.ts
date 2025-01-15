@@ -7,4 +7,8 @@ export const AuthService = {
     const { data } = await api.post('/auth/login', { email, password });
     return data;
   },
+  logout: async (): Promise<boolean> => {
+    const { data } = await api.post('/auth/logout');
+    return data;
+  },
 };

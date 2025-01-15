@@ -16,6 +16,15 @@ import AppBar from './components/appBar';
 import Drawer from './components/drawer';
 import CustomList from './components/menu/customList';
 import { Tooltip } from '@mui/material';
+import { AuthService } from '@/services/auth';
+import { useMutation } from '@tanstack/react-query';
+import { isAxiosError } from 'axios';
+import { useAlert } from '@/contexts/alertContext';
+import { UserStorage } from '@/storages/userStorage';
+import { AuthStorage } from '@/storages/authStorage';
+import { useRouter } from 'next/navigation';
+import { useAuth } from '@/contexts/authContext';
+
 const drawerWidth = 240;
 
 
@@ -32,7 +41,10 @@ export default function MiniDrawer({
 }: {
   children: React.ReactNode
 }) {
+  const { push } = useRouter();
   const theme = useTheme();
+  const { showAlert } = useAlert();
+  const { user } = useAuth()
   const [open, setOpen] = React.useState(false);
 
   const handleDrawerOpen = () => {
@@ -42,6 +54,28 @@ export default function MiniDrawer({
   const handleDrawerClose = () => {
     setOpen(false);
   };
+
+  const getFirstAndLastName = (fullName: string): string => {
+    const [firstName = '', ...rest] = fullName.trim().split(' ');
+    const lastName = rest.pop() || '';
+    return `${firstName} ${lastName}`
+  };
+
+  const { mutate } = useMutation<boolean, Error, void>({
+    mutationFn: () => AuthService.logout(),
+    onError: (error) => {
+      if (isAxiosError(error)) {
+        showAlert(error.response?.data.message, 'error');
+      }
+    },
+    onSuccess: () => {
+      UserStorage.removeUser();
+      AuthStorage.removeToken();
+      showAlert('Logout realizado com sucesso!', 'success');
+      push('/')
+    },
+  });
+
 
   return (
     <Box sx={{ display: 'flex' }}>
@@ -87,15 +121,15 @@ export default function MiniDrawer({
           }}>
             <Box>
               <Typography
-                variant='body1'
+                variant='h6'
                 fontWeight={'bold'}
               >
-                Victor Samuel
+                {user && getFirstAndLastName(user.name)}
               </Typography>
               <Typography
-                variant='body2'
+                fontSize={10}
               >
-                ADMIN
+                {user?.email}
               </Typography>
             </Box>
           </Box>
@@ -109,6 +143,7 @@ export default function MiniDrawer({
         <Tooltip title={`${!open ? 'Sair' : ''}`} placement='right'>
           <Box
             component="button"
+            onClick={() => mutate()}
             sx={(theme) => ({
               color: theme.palette.secondary.main,
               position: 'absolute',

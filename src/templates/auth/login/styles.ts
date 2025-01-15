@@ -35,7 +35,7 @@ export const sectionStyles: Record<'form' | 'image', SxProps<Theme>> = {
 };
 
 
-export const formStyles: Record<'title' | 'subTitle' | 'register', SxProps<Theme>> = {
+export const formStyles: Record<'title' | 'subTitle' | 'register' | 'registerContainter', SxProps<Theme>> = {
   title: {
     textAlign: 'center',
     fontWeight: 'bold',
@@ -44,6 +44,11 @@ export const formStyles: Record<'title' | 'subTitle' | 'register', SxProps<Theme
   subTitle: {
     textAlign: 'center',
     color: defaultTheme.palette.primary.main
+  },
+  registerContainter: {
+    display: 'flex',
+    flexDirection: 'column',
+    gap: 2
   },
   register: {
     color: 'primary.main',

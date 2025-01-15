@@ -7,10 +7,7 @@ import { FC, ComponentType, useEffect } from 'react';
 export function withAuth<T extends Record<string, unknown>>(Component: ComponentType<T>): FC<T> {
   const checkActiveSession = async (token: string | null): Promise<boolean> => {
     if (!token) return false;
-    // Adicione a lógica para validar o token aqui, por exemplo:
-    // const response = await fetch('/api/validate-session', { headers: { Authorization: `Bearer ${token}` } });
-    // return response.ok;
-    return true; // Placeholder, ajuste conforme necessário
+    return true;
   };
 
   return function WithAuth(props: T) {

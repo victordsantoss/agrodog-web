@@ -51,7 +51,7 @@ const LoginTemplate = () => {
               {subTitle}
             </Typography>
           </Box>
-          <Box sx={{ display: 'flex', flexDirection: 'column', gap: 2 }}>
+          <Box sx={formStyles.registerContainter}>
             <LoginForm onSubmit={(values) => mutate(values)} isPending={isPending} />
             <Divider orientation="horizontal" variant="middle" flexItem>
               ou
