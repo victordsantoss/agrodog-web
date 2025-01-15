@@ -2,7 +2,7 @@
 
 import { Box } from '@mui/material';
 import React from 'react';
-import { layoutStyle } from './styles';
+import { authLayoutStyle } from './styles';
 
 export default function AuthLayoutComponent({
   children,
@@ -12,13 +12,14 @@ export default function AuthLayoutComponent({
   return (
     <Box
       component="div"
-      sx={layoutStyle.container}
+      sx={authLayoutStyle.container}
     >
-      <main
-        style={layoutStyle.main}
+      <Box
+        component='main'
+        sx={authLayoutStyle.main}
       >
         {children}
-      </main>
+      </Box>
     </Box>
   );
 }

@@ -5,7 +5,6 @@ import ContactMailIcon from '@mui/icons-material/ContactMail';
 import AssignmentIcon from '@mui/icons-material/Assignment';
 import AddShoppingCartIcon from '@mui/icons-material/AddShoppingCart';
 import ProductionQuantityLimitsIcon from '@mui/icons-material/ProductionQuantityLimits';
-
 export interface IMenuItem {
   text: string;
   icon: JSX.Element;
@@ -23,10 +22,10 @@ export const menuItems: IMenuItem[] = [
   },
   {
     text: 'Controle de Vendas',
-    icon: <AttachMoneyIcon />,
+    icon: <AddShoppingCartIcon />,
     items: [
       { text: 'Relatórios', icon: <AssignmentIcon /> },
-      { text: 'Vendas', icon: <AddShoppingCartIcon /> },
+      { text: 'Vendas', icon: <AttachMoneyIcon /> },
     ],
   },
 ];

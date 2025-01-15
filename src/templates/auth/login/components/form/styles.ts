@@ -1,24 +1,25 @@
-import { Theme } from "@emotion/react";
-import { SxProps } from "@mui/material";
+import { SxProps, Theme } from "@mui/material";
 
-export const containerStyle: SxProps<Theme> = {
-  display: 'flex',
-  flexDirection: 'column',
-  gap: 4,
+export const formStyles: {
+  container: SxProps<Theme>;
+  formContainer: SxProps<Theme>;
+  buttonContainer: SxProps<Theme>;
+} = {
+  container: {
+    display: 'flex',
+    flexDirection: 'column',
+    gap: 4,
+  },
+  formContainer: {
+    display: 'flex',
+    flexDirection: 'column',
+    gap: 2,
+  },
+  buttonContainer: {
+    width: '50%',
+    maxWidth: 300,
+    display: 'flex',
+    justifyContent: 'center',
+    marginX: 'auto',
+  },
 };
-
-export const formContainerStyle: SxProps<Theme> = {
-  display: 'flex',
-  flexDirection: 'column',
-  gap: 2
-};
-
-
-export const buttonContainerStyle: SxProps<Theme> = {
-  width: '50%',
-  maxWidth: 300,
-  display: 'flex',
-  justifyContent: 'center',
-  mx: 'auto',
-};
-

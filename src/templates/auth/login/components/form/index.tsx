@@ -6,7 +6,7 @@ import { Visibility, VisibilityOff } from '@mui/icons-material';
 import { Controller, FormProvider, useForm } from 'react-hook-form';
 import { LoginFormValues, LoginSchema } from './validationSchema';
 import { zodResolver } from '@hookform/resolvers/zod';
-import { buttonContainerStyle, containerStyle, formContainerStyle } from './styles';
+import { formStyles } from './styles';
 
 interface LoginFormProps {
   onSubmit: (values: LoginFormValues) => void;
@@ -32,10 +32,10 @@ const LoginForm: React.FC<LoginFormProps> = ({ onSubmit, isPending }) => {
     <Box
       component="form"
       onSubmit={methods.handleSubmit(onSubmit)}
-      sx={containerStyle}
+      sx={formStyles.container}
     >
       <FormProvider {...methods}>
-        <Box sx={formContainerStyle}>
+        <Box sx={formStyles.formContainer}>
           <Controller
             name="email"
             control={methods.control}
@@ -83,7 +83,7 @@ const LoginForm: React.FC<LoginFormProps> = ({ onSubmit, isPending }) => {
           />
         </Box>
         <Box
-          sx={buttonContainerStyle}
+          sx={formStyles.buttonContainer}
         >
           <Button
             type="submit"

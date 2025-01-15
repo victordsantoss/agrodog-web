@@ -1,7 +1,7 @@
 'use client'
 
 import * as React from 'react';
-import { styled, useTheme } from '@mui/material/styles';
+import { useTheme } from '@mui/material/styles';
 import Box from '@mui/material/Box';
 import Toolbar from '@mui/material/Toolbar';
 import CssBaseline from '@mui/material/CssBaseline';
@@ -14,7 +14,7 @@ import ChevronRightIcon from '@mui/icons-material/ChevronRight';
 import LogoutIcon from '@mui/icons-material/Logout';
 import AppBar from './components/appBar';
 import Drawer from './components/drawer';
-import CustomList from './components/menu/customList';
+import CustomList from './components/CustomList';
 import { Tooltip } from '@mui/material';
 import { AuthService } from '@/services/auth';
 import { useMutation } from '@tanstack/react-query';
@@ -24,27 +24,15 @@ import { UserStorage } from '@/storages/userStorage';
 import { AuthStorage } from '@/storages/authStorage';
 import { useRouter } from 'next/navigation';
 import { useAuth } from '@/contexts/authContext';
+import { miniDrawerStyles } from './styles';
 
 const drawerWidth = 240;
 
-
-const DrawerHeader = styled('div')(({ theme }) => ({
-  display: 'flex',
-  alignItems: 'center',
-  justifyContent: 'flex-end',
-  padding: theme.spacing(0, 1),
-  ...theme.mixins.toolbar,
-}));
-
-export default function MiniDrawer({
-  children,
-}: {
-  children: React.ReactNode
-}) {
+export default function MiniDrawer({ children }: { children: React.ReactNode }) {
   const { push } = useRouter();
   const theme = useTheme();
   const { showAlert } = useAlert();
-  const { user } = useAuth()
+  const { user } = useAuth();
   const [open, setOpen] = React.useState(false);
 
   const handleDrawerOpen = () => {
@@ -58,7 +46,7 @@ export default function MiniDrawer({
   const getFirstAndLastName = (fullName: string): string => {
     const [firstName = '', ...rest] = fullName.trim().split(' ');
     const lastName = rest.pop() || '';
-    return `${firstName} ${lastName}`
+    return `${firstName} ${lastName}`;
   };
 
   const { mutate } = useMutation<boolean, Error, void>({
@@ -69,16 +57,15 @@ export default function MiniDrawer({
       }
     },
     onSuccess: () => {
+      showAlert('Encerrando sessão. Até breve!', 'success');
       UserStorage.removeUser();
       AuthStorage.removeToken();
-      showAlert('Logout realizado com sucesso!', 'success');
-      push('/')
+      push('/');
     },
   });
 
-
   return (
-    <Box sx={{ display: 'flex' }}>
+    <Box sx={miniDrawerStyles.root}>
       <CssBaseline />
       <AppBar
         open={open}
@@ -89,10 +76,7 @@ export default function MiniDrawer({
             aria-label="open drawer"
             onClick={handleDrawerOpen}
             edge="start"
-            sx={{
-              marginRight: 5,
-              display: open ? 'none' : 'block',
-            }}
+            sx={miniDrawerStyles.menuButton(open)}
           >
             <MenuIcon />
           </IconButton>
@@ -101,86 +85,34 @@ export default function MiniDrawer({
           </Typography>
         </Toolbar>
       </AppBar>
-      <Drawer
-        variant="permanent"
-        open={open}
-        drawerWidth={drawerWidth}>
-        <DrawerHeader
-          sx={(theme) => ({
-            color: theme.palette.primary.main,
-            pl: 2.5,
-            display: 'flex',
-            justifyContent: 'space-between',
-          })}>
-          <Box sx={{
-            display: 'flex',
-            alignItems: 'justify-center',
-            width: '100%',
-            gap: 1,
-
-          }}>
+      <Drawer variant="permanent" open={open} drawerWidth={drawerWidth}>
+        <Box sx={miniDrawerStyles.drawerHeader(theme)}>
+          <Box sx={miniDrawerStyles.userInfoContainer}>
             <Box>
-              <Typography
-                variant='h6'
-                fontWeight={'bold'}
-              >
+              <Typography variant="h6" fontWeight="bold">
                 {user && getFirstAndLastName(user.name)}
               </Typography>
-              <Typography
-                fontSize={10}
-              >
-                {user?.email}
-              </Typography>
+              <Typography fontSize={10}>{user?.email}</Typography>
             </Box>
           </Box>
           <IconButton onClick={handleDrawerClose}>
             {theme.direction === 'rtl' ? <ChevronRightIcon /> : <ChevronLeftIcon />}
           </IconButton>
-        </DrawerHeader>
+        </Box>
         <Divider />
         <CustomList open={open} setOpen={setOpen} />
         <Divider />
-        <Tooltip title={`${!open ? 'Sair' : ''}`} placement='right'>
-          <Box
-            component="button"
-            onClick={() => mutate()}
-            sx={(theme) => ({
-              color: theme.palette.secondary.main,
-              position: 'absolute',
-              bottom: 16,
-              left: '50%',
-              transform: 'translateX(-50%)',
-              width: open ? '95%' : '80%',
-              display: 'flex',
-              justifyContent: open ? 'flex-start' : 'center',
-              alignItems: 'center',
-              paddingX: 2,
-              paddingY: 1,
-              border: `1px solid ${theme.palette.secondary.main}`,
-              borderRadius: theme.spacing(1),
-            })}
-          >
-            <Typography
-              sx={{
-                marginLeft: 1,
-                display: open ? 'flex' : 'none',
-                justifyContent: 'end',
-                mr: 'auto',
-                fontWeight: 600
-              }}
-            >
-              Sair
-            </Typography>
+        <Tooltip title={`${!open ? 'Sair' : ''}`} placement="right">
+          <Box component="button" onClick={() => mutate()} sx={miniDrawerStyles.logoutButton(open)}>
+            <Typography sx={miniDrawerStyles.logoutText(open)}>Sair</Typography>
             <LogoutIcon />
           </Box>
         </Tooltip>
       </Drawer>
-      <Box component="main" sx={{ flexGrow: 1, p: 3 }}>
-        <DrawerHeader />
+      <Box component="main" sx={miniDrawerStyles.main}>
+        <Box sx={miniDrawerStyles.drawerHeader(theme)} />
         {children}
       </Box>
-
-    </Box >
+    </Box>
   );
 }
-

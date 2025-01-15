@@ -1,6 +1,6 @@
 'use client'
 
-import AuthLayoutComponent from '@/components/layout/auth';
+import AuthLayoutComponent from '@/components/Layout/Auth';
 import { AlertProvider } from '@/contexts/alertContext';
 import { AuthProvider } from '@/contexts/authContext';
 import TanstackProvider from '@/providers/tanstackProvider';

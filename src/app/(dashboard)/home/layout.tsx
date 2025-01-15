@@ -1,7 +1,7 @@
 
 'use client'
 
-import DashboardLayoutComponent from '@/components/layout/dashboard';
+import DashboardLayoutComponent from '@/components/Layout/Dashboard';
 import { AlertProvider } from '@/contexts/alertContext';
 import { AuthProvider } from '@/contexts/authContext';
 import TanstackProvider from '@/providers/tanstackProvider';

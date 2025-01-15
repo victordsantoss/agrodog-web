@@ -1,6 +1,10 @@
-import defaultTheme from "@/configs/styles/theme/defaultTheme";
+import { SxProps, Theme } from '@mui/material';
+import defaultTheme from '@/configs/styles/theme/defaultTheme';
 
-export const layoutStyle = {
+export const authLayoutStyle: {
+  container: SxProps<Theme>;
+  main: SxProps<Theme>;
+} = {
   container: {
     display: 'flex',
     justifyContent: 'center',
@@ -15,5 +19,5 @@ export const layoutStyle = {
     flex: 1,
     height: '100%',
     width: '100%',
-  }
+  },
 };

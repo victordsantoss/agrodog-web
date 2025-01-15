@@ -6,8 +6,8 @@ import PetsIcon from '@mui/icons-material/Pets';
 import React from 'react';
 import { useRouter } from 'next/navigation';
 import Image from 'next/image';
-import { containerStyle, dividerStyles, sectionStyles, formStyles } from './styles';
-import LoginForm from './components/form';
+import { loginStyles } from './styles';
+import LoginForm from './components/Form';
 import { useMutation } from '@tanstack/react-query';
 import { AuthService } from '@/services/auth';
 import { isAxiosError } from 'axios';
@@ -33,7 +33,7 @@ const LoginTemplate = () => {
     },
     onSuccess: async (token: string) => {
       AuthStorage.setToken(token);
-      await persistUser(token)
+      persistUser(token)
       showAlert('Usuário autenticado com sucesso!', 'success');
       push('home')
     },
@@ -41,17 +41,17 @@ const LoginTemplate = () => {
 
   return (
     <Box sx={{ ...defaultContainerStyles }}>
-      <Box sx={containerStyle}>
-        <Box sx={sectionStyles.form}>
+      <Box sx={loginStyles.container}>
+        <Box sx={loginStyles.sections.form}>
           <Box>
-            <Typography variant="h3" sx={formStyles.title}>
+            <Typography variant="h3" sx={loginStyles.form.title}>
               {title}
             </Typography>
-            <Typography variant="body2" sx={formStyles.subTitle}>
+            <Typography variant="body2" sx={loginStyles.form.subTitle}>
               {subTitle}
             </Typography>
           </Box>
-          <Box sx={formStyles.registerContainter}>
+          <Box sx={loginStyles.form.registerContainter}>
             <LoginForm onSubmit={(values) => mutate(values)} isPending={isPending} />
             <Divider orientation="horizontal" variant="middle" flexItem>
               ou
@@ -62,18 +62,18 @@ const LoginTemplate = () => {
                 component="span"
                 variant="body1"
                 onClick={() => push('/')}
-                sx={formStyles.register}
+                sx={loginStyles.form.register}
               >
                 Registre-se
               </Typography>
             </Typography>
           </Box>
         </Box>
-        <Divider orientation="vertical" variant="middle" flexItem sx={dividerStyles.section}>
-          <PetsIcon sx={dividerStyles.icon} />
+        <Divider orientation="vertical" variant="middle" flexItem sx={loginStyles.divider.section}>
+          <PetsIcon sx={loginStyles.divider.icon} />
         </Divider>
-        <Box sx={sectionStyles.image}>
-          <Image width={300} height={450} src={'/assets/dog1.png'} alt={'Cachorro fofo'} />
+        <Box sx={loginStyles.sections.image}>
+          <Image width={300} height={450} src={'/assets/dog1.png'} alt={'Cachorro fofinho'} />
         </Box>
       </Box>
     </Box>
