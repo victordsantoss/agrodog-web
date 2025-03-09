@@ -1,7 +1,7 @@
 import { ThemeProvider } from '@mui/material/styles';
 import '../configs/styles/reset.css';
 import CssBaseline from '@mui/material/CssBaseline';
-import defaultTheme from '@/configs/styles/theme/defaultTheme';
+import defaultTheme from '@/configs/styles/theme/default-theme';
 
 
 export const metadata = {

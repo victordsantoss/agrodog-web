@@ -2,7 +2,7 @@
 import { createTheme } from '@mui/material/styles';
 import { ButtonStyles } from './components/button';
 import { TypographyStyles } from './components/typography';
-import { TextFieldStyles } from './components/inputField';
+import { TextFieldStyles } from './components/input-field';
 
 const defaultTheme = createTheme({
   palette: {

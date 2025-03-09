@@ -1,9 +1,9 @@
 import { api } from "@/configs/api";
-import { ILoginRequestDto } from "./dto/login.request.dto";
+import { Login } from "./login.types";
 
 
 export const AuthService = {
-  login: async ({ email, password }: ILoginRequestDto): Promise<string> => {
+  login: async ({ email, password }: Login.ILoginRequest): Promise<string> => {
     const { data } = await api.post('/auth/login', { email, password });
     return data;
   },

@@ -8,6 +8,7 @@ import ProductionQuantityLimitsIcon from '@mui/icons-material/ProductionQuantity
 export interface IMenuItem {
   text: string;
   icon: JSX.Element;
+  url: string
   items: { text: string; icon: JSX.Element }[];
 }
 
@@ -15,6 +16,7 @@ export const menuItems: IMenuItem[] = [
   {
     text: 'Produtos e Estoque',
     icon: <InventoryIcon />,
+    url: '',
     items: [
       { text: 'Fornecedores', icon: <ContactMailIcon /> },
       { text: 'Estoque', icon: <ProductionQuantityLimitsIcon /> },
@@ -23,6 +25,7 @@ export const menuItems: IMenuItem[] = [
   {
     text: 'Controle de Vendas',
     icon: <AddShoppingCartIcon />,
+    url: '',
     items: [
       { text: 'Relatórios', icon: <AssignmentIcon /> },
       { text: 'Vendas', icon: <AttachMoneyIcon /> },

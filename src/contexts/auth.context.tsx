@@ -1,21 +1,21 @@
 import React, { createContext, useContext, ReactNode, useEffect, useState } from 'react';
-import { AuthStorage } from '@/storages/authStorage';
+import { AuthStorage } from '@/storages/auth.storage';
 import { UserService } from '@/services/user';
-import { UserStorage } from '@/storages/userStorage';
-import { IUserResponseDto } from '@/services/user/dto/user.response.dto';
+import { UserStorage } from '@/storages/user.storage';
+import { AuthenticatedUser } from '@/services/user/user.types';
 
 interface AuthContextProps {
   persistUser: (token: string) => void;
-  user: IUserResponseDto | undefined
+  user: AuthenticatedUser.response | undefined
 }
 
 const AuthContext = createContext<AuthContextProps | undefined>(undefined);
 
 export const AuthProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
-  const [user, setUser] = useState<IUserResponseDto | undefined>(undefined)
+  const [user, setUser] = useState<AuthenticatedUser.response | undefined>(undefined)
 
   const persistUser = async () => {
-    const { user } = await UserService.getAuthenticatedUser();
+    const user = await UserService.getAuthenticatedUser();
     if (user) {
       UserStorage.setUser(user)
       setUser(user)

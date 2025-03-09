@@ -1,5 +1,5 @@
 import { ComponentsOverrides, Theme } from '@mui/material';
-import defaultTheme from '../defaultTheme';
+import defaultTheme from '../default-theme';
 
 interface MyButtonOverrides {
   MuiButton: {

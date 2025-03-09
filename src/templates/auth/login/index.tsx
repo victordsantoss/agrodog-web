@@ -7,13 +7,13 @@ import React from 'react';
 import { useRouter } from 'next/navigation';
 import Image from 'next/image';
 import { loginStyles } from './styles';
-import LoginForm from './components/Form';
+import LoginForm from './components/form';
 import { useMutation } from '@tanstack/react-query';
 import { AuthService } from '@/services/auth';
 import { isAxiosError } from 'axios';
-import { useAlert } from '@/contexts/alertContext';
-import { AuthStorage } from '@/storages/authStorage';
-import { useAuth } from '@/contexts/authContext';
+import { useAlert } from '@/contexts/alert.context';
+import { AuthStorage } from '@/storages/auth.storage';
+import { useAuth } from '@/contexts/auth.context';
 
 const title = 'Bem vindo(a) de volta';
 const subTitle = 'Faça login para continuar explorando nossos serviços.';

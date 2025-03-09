@@ -1,11 +1,11 @@
-import { IUserResponseDto } from "@/services/user/dto/user.response.dto";
+import { AuthenticatedUser } from "@/services/user/user.types";
 
 export const UserStorage = {
   key: 'userData',
-  setUser: (userData: IUserResponseDto) => {
+  setUser: (userData: AuthenticatedUser.response) => {
     localStorage.setItem(UserStorage.key, JSON.stringify(userData));
   },
-  getUser: (): IUserResponseDto | null => {
+  getUser: (): AuthenticatedUser.response | null => {
     const userData = localStorage.getItem(UserStorage.key);
     return userData ? JSON.parse(userData) : null;
   },

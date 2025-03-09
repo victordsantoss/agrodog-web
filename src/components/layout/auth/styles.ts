@@ -1,5 +1,5 @@
 import { SxProps, Theme } from '@mui/material';
-import defaultTheme from '@/configs/styles/theme/defaultTheme';
+import defaultTheme from '@/configs/styles/theme/default-theme';
 
 export const authLayoutStyle: {
   container: SxProps<Theme>;

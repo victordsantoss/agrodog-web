@@ -12,18 +12,18 @@ import MenuIcon from '@mui/icons-material/Menu';
 import ChevronLeftIcon from '@mui/icons-material/ChevronLeft';
 import ChevronRightIcon from '@mui/icons-material/ChevronRight';
 import LogoutIcon from '@mui/icons-material/Logout';
-import AppBar from './components/appBar';
+import AppBar from './components/app-bar';
 import Drawer from './components/drawer';
-import CustomList from './components/CustomList';
+import CustomList from './components/custom-list';
 import { Tooltip } from '@mui/material';
 import { AuthService } from '@/services/auth';
 import { useMutation } from '@tanstack/react-query';
 import { isAxiosError } from 'axios';
-import { useAlert } from '@/contexts/alertContext';
-import { UserStorage } from '@/storages/userStorage';
-import { AuthStorage } from '@/storages/authStorage';
+import { useAlert } from '@/contexts/alert.context';
+import { UserStorage } from '@/storages/user.storage';
+import { AuthStorage } from '@/storages/auth.storage';
 import { useRouter } from 'next/navigation';
-import { useAuth } from '@/contexts/authContext';
+import { useAuth } from '@/contexts/auth.context';
 import { miniDrawerStyles } from './styles';
 
 const drawerWidth = 240;
@@ -64,6 +64,8 @@ export default function MiniDrawer({ children }: { children: React.ReactNode }) 
     },
   });
 
+  console.log("user", user)
+
   return (
     <Box sx={miniDrawerStyles.root}>
       <CssBaseline />
@@ -90,9 +92,9 @@ export default function MiniDrawer({ children }: { children: React.ReactNode }) 
           <Box sx={miniDrawerStyles.userInfoContainer}>
             <Box>
               <Typography variant="h6" fontWeight="bold">
-                {user && getFirstAndLastName(user.name)}
+                {user && getFirstAndLastName(user.user.name)}
               </Typography>
-              <Typography fontSize={10}>{user?.email}</Typography>
+              <Typography fontSize={10}>{user?.user.email}</Typography>
             </Box>
           </Box>
           <IconButton onClick={handleDrawerClose}>

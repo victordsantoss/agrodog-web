@@ -4,7 +4,7 @@ import React, { useState } from 'react';
 import { Box, Button, IconButton, InputAdornment, TextField } from '@mui/material';
 import { Visibility, VisibilityOff } from '@mui/icons-material';
 import { Controller, FormProvider, useForm } from 'react-hook-form';
-import { LoginFormValues, LoginSchema } from './validationSchema';
+import { LoginFormValues, LoginSchema } from './validation-schema';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { formStyles } from './styles';
 

@@ -1,7 +1,8 @@
 'use client';
 
 
-import { withAuth } from "@/hoc/withAuth"
+
+import { withAuth } from "@/hoc/with-auth.hoc";
 import { Box, Typography } from "@mui/material"
 
 const HomeTemplate = () => {

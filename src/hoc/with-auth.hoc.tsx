@@ -1,6 +1,6 @@
 'use client';
 
-import { AuthStorage } from '@/storages/authStorage';
+import { AuthStorage } from '@/storages/auth.storage';
 import { useRouter } from 'next/navigation';
 import { FC, ComponentType, useEffect } from 'react';
 
