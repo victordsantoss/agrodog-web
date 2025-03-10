@@ -1,9 +1,13 @@
 import { api } from "@/configs/api";
-import { Login } from "./login.types";
+import { Auth } from "./login.types";
 
 
 export const AuthService = {
-  login: async ({ email, password }: Login.ILoginRequest): Promise<string> => {
+  register: async (payload: Auth.IRegisterRequest): Promise<Auth.IRegisterResponse> => {
+    const { data } = await api.post('/user', payload)
+    return data;
+  },
+  login: async ({ email, password }: Auth.ILoginRequest): Promise<string> => {
     const { data } = await api.post('/auth/login', { email, password });
     return data;
   },
