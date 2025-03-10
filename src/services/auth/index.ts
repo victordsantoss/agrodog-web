@@ -1,5 +1,5 @@
 import { api } from "@/configs/api";
-import { Auth } from "./login.types";
+import { Auth } from "./auth.types";
 
 
 export const AuthService = {

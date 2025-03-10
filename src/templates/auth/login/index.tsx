@@ -8,7 +8,9 @@ const LoginTemplate = () => {
   const methods = useLoginModel()
 
   return (
-    <LoginView {...methods} />
+    <LoginView
+      {...methods}
+    />
   );
 };
 

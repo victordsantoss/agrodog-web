@@ -1,11 +1,11 @@
-import { AuthenticatedUser } from "@/services/user/user.types";
+import { User } from "@/services/user/user.types";
 
 export const UserStorage = {
   key: 'userData',
-  setUser: (userData: AuthenticatedUser.response) => {
+  setUser: (userData: User.IAuthenticatedUserResponse) => {
     localStorage.setItem(UserStorage.key, JSON.stringify(userData));
   },
-  getUser: (): AuthenticatedUser.response | null => {
+  getUser: (): User.IAuthenticatedUserResponse | null => {
     const userData = localStorage.getItem(UserStorage.key);
     return userData ? JSON.parse(userData) : null;
   },

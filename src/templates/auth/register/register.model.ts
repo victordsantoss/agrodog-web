@@ -3,7 +3,7 @@ import { useMutation } from "@tanstack/react-query";
 import { AxiosError } from "axios";
 
 import { AuthService } from "@/services/auth";
-import { Auth } from "@/services/auth/login.types";
+import { Auth } from "@/services/auth/auth.types";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { RegisterFormValues, RegisterSchema } from "./components/form/form.schema";

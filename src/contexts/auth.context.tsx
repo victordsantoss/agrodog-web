@@ -2,17 +2,17 @@ import React, { createContext, useContext, ReactNode, useEffect, useState } from
 import { AuthStorage } from '@/storages/auth.storage';
 import { UserService } from '@/services/user';
 import { UserStorage } from '@/storages/user.storage';
-import { AuthenticatedUser } from '@/services/user/user.types';
+import { User } from '@/services/user/user.types';
 
 interface AuthContextProps {
   persistUser: (token: string) => void;
-  user: AuthenticatedUser.response | undefined
+  user: User.IAuthenticatedUserResponse | undefined
 }
 
 const AuthContext = createContext<AuthContextProps | undefined>(undefined);
 
 export const AuthProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
-  const [user, setUser] = useState<AuthenticatedUser.response | undefined>(undefined)
+  const [user, setUser] = useState<User.IAuthenticatedUserResponse | undefined>(undefined)
 
   const persistUser = async () => {
     const user = await UserService.getAuthenticatedUser();

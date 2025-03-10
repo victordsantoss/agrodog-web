@@ -1,7 +1,7 @@
 import { UserModel } from "@/common/models/user.model"
 
-export namespace AuthenticatedUser {
-  export type response = {
+export namespace User {
+  export type IAuthenticatedUserResponse = {
     id: string
     token: string
     isActive: boolean,
