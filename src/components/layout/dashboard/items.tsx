@@ -5,21 +5,28 @@ import ContactMailIcon from '@mui/icons-material/ContactMail';
 import AssignmentIcon from '@mui/icons-material/Assignment';
 import AddShoppingCartIcon from '@mui/icons-material/AddShoppingCart';
 import ProductionQuantityLimitsIcon from '@mui/icons-material/ProductionQuantityLimits';
+import AutoGraphIcon from '@mui/icons-material/AutoGraph';
+
 export interface IMenuItem {
   text: string;
   icon: JSX.Element;
   url: string
-  items: { text: string; icon: JSX.Element }[];
+  items?: IMenuItem[];
 }
 
 export const menuItems: IMenuItem[] = [
+  {
+    text: 'Dashboard',
+    icon: <AutoGraphIcon />,
+    url: '/home',
+  },
   {
     text: 'Produtos e Estoque',
     icon: <InventoryIcon />,
     url: '',
     items: [
-      { text: 'Fornecedores', icon: <ContactMailIcon /> },
-      { text: 'Estoque', icon: <ProductionQuantityLimitsIcon /> },
+      { text: 'Fornecedores', icon: <ContactMailIcon />, url: '/suppliers' },
+      { text: 'Estoque', icon: <ProductionQuantityLimitsIcon />, url: '/stock' },
     ],
   },
   {
@@ -27,8 +34,8 @@ export const menuItems: IMenuItem[] = [
     icon: <AddShoppingCartIcon />,
     url: '',
     items: [
-      { text: 'Relatórios', icon: <AssignmentIcon /> },
-      { text: 'Vendas', icon: <AttachMoneyIcon /> },
+      { text: 'Relatórios', icon: <AssignmentIcon />, url: '/reports' },
+      { text: 'Vendas', icon: <AttachMoneyIcon />, url: '/sales' },
     ],
   },
 ];

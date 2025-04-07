@@ -8,6 +8,8 @@ import Collapse from '@mui/material/Collapse';
 import { IMenuItem, menuItems } from '../../items';
 import { Tooltip } from '@mui/material';
 import { customListStyles } from './styles';
+import { useMenu } from '@/contexts/menu.context';
+import { useRouter } from 'next/navigation';
 
 interface ICustomListProps {
   open: boolean;
@@ -15,12 +17,24 @@ interface ICustomListProps {
 }
 
 const CustomList: React.FC<ICustomListProps> = ({ open, setOpen }) => {
+  const { push } = useRouter()
+  const { setCurrent } = useMenu()
   const [expandedCategory, setExpandedCategory] = useState<string | null>(null);
 
-  const handleToggleCategory = (category: string) => {
+  const handleToggleCategory = (category: IMenuItem) => {
     setOpen(true);
-    setExpandedCategory((prev) => (prev === category ? null : category));
+    setExpandedCategory((prev) => (prev === category.text ? null : category.text));
+    if (category.url) {
+      push(category.url)
+    }
   };
+
+  const handleToggleItem = (item: IMenuItem) => {
+    setCurrent(item)
+    push(item.url)
+  }
+
+
 
   useEffect(() => {
     if (!open) setExpandedCategory(null);
@@ -32,7 +46,7 @@ const CustomList: React.FC<ICustomListProps> = ({ open, setOpen }) => {
         <div key={category.text}>
           <ListItem disablePadding sx={customListStyles.listItem}>
             <ListItemButton
-              onClick={() => handleToggleCategory(category.text)}
+              onClick={() => handleToggleCategory(category)}
               sx={customListStyles.listItemButton(open)}
             >
               <Tooltip title={`${category.text}`} placement="right">
@@ -48,11 +62,12 @@ const CustomList: React.FC<ICustomListProps> = ({ open, setOpen }) => {
           </ListItem>
           <Collapse in={expandedCategory === category.text} timeout="auto" unmountOnExit>
             <List component="div" disablePadding>
-              {category.items.map((item, index) => (
+              {category?.items?.map((item, index) => (
                 <ListItem
                   key={`${item.text}-${index}`}
                   disablePadding
                   sx={customListStyles.listItem}
+                  onClick={() => handleToggleItem(item)}
                 >
                   <ListItemButton sx={customListStyles.nestedListItemButton(open)}>
                     <ListItemIcon sx={customListStyles.listItemIcon(open)}>

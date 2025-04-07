@@ -25,10 +25,12 @@ import { AuthStorage } from '@/storages/auth.storage';
 import { useRouter } from 'next/navigation';
 import { useAuth } from '@/contexts/auth.context';
 import { miniDrawerStyles } from './styles';
+import { useMenu } from '@/contexts/menu.context';
 
 const drawerWidth = 240;
 
 export default function MiniDrawer({ children }: { children: React.ReactNode }) {
+  const { current } = useMenu()
   const { push } = useRouter();
   const theme = useTheme();
   const { showAlert } = useAlert();
@@ -64,8 +66,6 @@ export default function MiniDrawer({ children }: { children: React.ReactNode }) 
     },
   });
 
-  console.log("user", user)
-
   return (
     <Box sx={miniDrawerStyles.root}>
       <CssBaseline />
@@ -83,7 +83,7 @@ export default function MiniDrawer({ children }: { children: React.ReactNode }) 
             <MenuIcon />
           </IconButton>
           <Typography variant="h6" noWrap component="div">
-            Home
+            {current.text}
           </Typography>
         </Toolbar>
       </AppBar>
