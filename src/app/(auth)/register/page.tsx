@@ -1,8 +1,8 @@
-import RegisterTemplate from "@/templates/auth/register";
+import RegisterViewModel from "@/templates/auth/register";
 
 export default async function RegisterPage() {
   return (
-    <RegisterTemplate />
+    <RegisterViewModel />
   );
 };
 

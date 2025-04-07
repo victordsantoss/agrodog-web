@@ -1,23 +1,27 @@
 import { Box, Typography } from "@mui/material"
-import { useRegisterModel } from "./register.model"
+import { RegisterFormViewModel } from "./components/form";
+import { defaultContainerStyles } from "@/common/utils/styles";
+import { authFormStyles } from "../styles";
 
+const title = 'Bem vindo(a) ao nosso sistema';
+const subTitle = 'Faça seu cadastro para continuar explorando nossos serviços.';
 
-type RegisterViewProps = ReturnType<typeof useRegisterModel>
-
-const RegisterView = (props: RegisterViewProps) => {
-  const {
-    onSubmit,
-    isPending,
-    register,
-    handleSubmit,
-    errors,
-    isSubmitting
-  } = props;
+const RegisterView = () => {
   return (
-    <Box>
-      <Typography>
-        Register Page
-      </Typography>
+    <Box sx={{ ...defaultContainerStyles }}>
+      <Box sx={{ ...authFormStyles.container, flexDirection: 'column' }}>
+        <Box>
+          <Typography variant="h3" sx={authFormStyles.form.title}>
+            {title}
+          </Typography>
+          <Typography variant="body2" sx={authFormStyles.form.subTitle}>
+            {subTitle}
+          </Typography>
+        </Box>
+        <Box sx={{ ...authFormStyles.form.container }}>
+          <RegisterFormViewModel />
+        </Box>
+      </Box>
     </Box>
   )
 }

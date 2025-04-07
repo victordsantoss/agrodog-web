@@ -9,6 +9,33 @@ const defaultContainerStyles: SxProps<Theme> = {
   width: '100%',
 }
 
+const formStyles: {
+  container: SxProps<Theme>;
+  formContainer: SxProps<Theme>;
+  buttonContainer: SxProps<Theme>;
+} = {
+  container: {
+    display: 'flex',
+    flexDirection: 'column',
+    gap: 4,
+  },
+  formContainer: {
+    display: 'flex',
+    flexDirection: 'column',
+    gap: 2,
+  },
+  buttonContainer: {
+    width: '100%',
+    maxWidth: 300,
+    display: 'flex',
+    gap: 2,
+    justifyContent: 'center',
+    marginX: 'auto',
+  },
+};
+
+
 export {
-  defaultContainerStyles
+  defaultContainerStyles,
+  formStyles
 }

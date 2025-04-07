@@ -36,6 +36,4 @@ export const useLoginModel = () => {
     isPending,
     push
   }
-
-
 }

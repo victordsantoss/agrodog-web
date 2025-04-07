@@ -1,15 +1,11 @@
 'use client'
 
-import { useRegisterModel } from "./register.model"
 import RegisterView from "./register.view"
 
-const RegisterTemplate = () => {
-  const methods = useRegisterModel()
+const RegisterViewModel = () => {
   return (
-    <RegisterView
-      {...methods}
-    />
+    <RegisterView />
   )
 }
 
-export default RegisterTemplate
+export default RegisterViewModel

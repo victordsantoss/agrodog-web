@@ -6,7 +6,7 @@ import { Visibility, VisibilityOff } from '@mui/icons-material';
 import { Controller, FormProvider, useForm } from 'react-hook-form';
 import { LoginFormValues, LoginSchema } from './form.schema';
 import { zodResolver } from '@hookform/resolvers/zod';
-import { formStyles } from './styles';
+import { formStyles } from '@/common/utils/styles';
 
 interface LoginFormProps {
   onSubmit: (values: LoginFormValues) => void;

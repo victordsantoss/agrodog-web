@@ -2,7 +2,7 @@
 
 import { Snackbar, Alert as MuiAlert, AlertProps } from '@mui/material'
 
-import React, { createContext, useContext, useState, useCallback } from 'react'
+import React, { createContext, useContext, useState, useCallback, ReactNode } from 'react'
 
 interface AlertContextType {
   showAlert: (message: string, severity: AlertProps['severity']) => void
@@ -10,7 +10,7 @@ interface AlertContextType {
 
 const AlertContext = createContext<AlertContextType | undefined>(undefined)
 
-export const AlertProvider: React.FC<{ children: React.ReactNode }> = ({
+export const AlertProvider: React.FC<{ children: ReactNode }> = ({
   children,
 }) => {
   const [open, setOpen] = useState(false)

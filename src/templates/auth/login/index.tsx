@@ -3,10 +3,8 @@
 import { useLoginModel } from "./login.model";
 import { LoginView } from "./login.view";
 
-
-const LoginTemplate = () => {
+const LoginViewModel = () => {
   const methods = useLoginModel()
-
   return (
     <LoginView
       {...methods}
@@ -14,4 +12,4 @@ const LoginTemplate = () => {
   );
 };
 
-export default LoginTemplate;
+export default LoginViewModel;
