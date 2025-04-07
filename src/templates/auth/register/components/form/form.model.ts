@@ -13,13 +13,15 @@ export const useRegisterFormModel = () => {
   const { push } = useRouter()
   const { showAlert } = useAlert()
   const [showPassword, setShowPassword] = useState<boolean>(false)
+  const [showConfirmPassword, setShowConfirmPassword] = useState<boolean>(false)
   const methods = useForm<RegisterFormValues>({
     resolver: zodResolver(RegisterSchema),
     defaultValues: {
       name: '',
       email: '',
       cpf: '',
-      password: ''
+      password: '',
+      confirmPassword: ''
     }
   })
 
@@ -35,12 +37,15 @@ export const useRegisterFormModel = () => {
   })
 
   const onSubmit = (values: RegisterFormValues) => {
-    console.log(values)
     mutate(values)
   }
 
   const handleTogglePasswordVisibility = () => {
     setShowPassword((prev) => !prev);
+  };
+
+  const handleToggleConfirmPasswordVisibility = () => {
+    setShowConfirmPassword((prev) => !prev);
   };
 
   return {
@@ -49,7 +54,8 @@ export const useRegisterFormModel = () => {
     methods,
     push,
     showPassword,
-    setShowPassword,
-    handleTogglePasswordVisibility
+    handleTogglePasswordVisibility,
+    showConfirmPassword,
+    handleToggleConfirmPasswordVisibility
   }
 }

@@ -10,7 +10,7 @@ export const authFormStyles: {
     backgroundColor: defaultTheme.palette.background.default,
     padding: 4,
     borderRadius: 2,
-    width: 920,
+    width: 'auto',
     height: 'auto',
     maxWidth: '90%',
     maxHeight: '90%',
