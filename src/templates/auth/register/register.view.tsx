@@ -1,7 +1,7 @@
 import { Box, Typography } from "@mui/material"
-import { RegisterFormViewModel } from "./components/form";
 import { defaultContainerStyles } from "@/common/utils/styles";
 import { authFormStyles } from "../styles";
+import RegisterFormViewModel from "./components/form";
 
 const title = 'Bem vindo(a) ao nosso sistema';
 const subTitle = 'Faça seu cadastro para continuar explorando nossos serviços.';

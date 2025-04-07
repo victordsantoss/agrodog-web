@@ -1,9 +1,7 @@
 import { useRegisterFormModel } from "./form.model"
 import { RegisterFormView } from "./form.view"
 
-
-
-export const RegisterFormViewModel = () => {
+const RegisterFormViewModel = () => {
   const registerFormMethods = useRegisterFormModel()
   return (
     <RegisterFormView
@@ -11,4 +9,6 @@ export const RegisterFormViewModel = () => {
     />
   )
 }
+
+export default RegisterFormViewModel;
 

@@ -1,19 +1,19 @@
 import { Box, Divider, Typography } from "@mui/material"
 import { defaultContainerStyles } from '@/common/utils/styles';
-import LoginForm from "./components/form";
+
 import PetsIcon from '@mui/icons-material/Pets';
-import { useLoginModel } from "./login.model";
 import Image from "next/image";
 import { authFormStyles } from "../styles";
 import { loginFormStyles } from "./styles";
 
+import { useRouter } from "next/navigation";
+import LoginFormViewModel from "./components/form";
+
 const title = 'Bem vindo(a) de volta';
 const subTitle = 'Faça login para continuar explorando nossos serviços.';
 
-type LoginViewProps = ReturnType<typeof useLoginModel>
-
-export const LoginView = (props: LoginViewProps) => {
-  const { onSubmit, isPending, push } = props;
+export const LoginView = () => {
+  const { push } = useRouter()
   return (
     <Box sx={{ ...defaultContainerStyles }}>
       <Box sx={authFormStyles.container}>
@@ -27,7 +27,7 @@ export const LoginView = (props: LoginViewProps) => {
             </Typography>
           </Box>
           <Box sx={authFormStyles.form.container}>
-            <LoginForm onSubmit={(values) => onSubmit(values)} isPending={isPending} />
+            <LoginFormViewModel />
             <Divider orientation="horizontal" variant="middle" flexItem>
               ou
             </Divider>
